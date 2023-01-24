@@ -1,0 +1,4 @@
+node_modules
+!/node_modules/@klevn/jxc/dist/.build/
+
+.DS_Store

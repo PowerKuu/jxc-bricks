@@ -1,0 +1,16 @@
+{
+  "version": "1.0.2",
+  "scripts": {
+    "build": "npx @klevn/jxc build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@klevn/jxc": "^35.0.5"
+  },
+  "name": "jxc-brick",
+  "main": "./node_modules/@klevn/jxc/dist/.build/bricks.js",
+  "devDependencies": {},
+  "description": ""
+}
