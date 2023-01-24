@@ -1,5 +1,5 @@
 type LayoutProps = {
-    children?: JSX.Element, 
+    children?: JSX.Element[], 
     justify?: "start" | "end" | "center" | "space-between" | "space-around" | "space-evenly",
     align?: "start" | "end" | "center" | "stretch",
     gap?: number,
@@ -19,10 +19,15 @@ function createBrickStyles(props:LayoutProps, direction: "row" | "column") {
         "flex-direction": direction,
         "justify-content": props.justify,
         "align-items": props.align,
-        "gap": `${props.gap}rem`,
-        "padding": `${props.verticalPadding}rem ${props.horizontalPadding}rem`,
+        
+        "gap": props.gap ? `${props.gap}rem` : undefined,
+        "padding-left": props.horizontalPadding ? `${props.horizontalPadding}rem` : undefined,
+        "padding-right": props.horizontalPadding ? `${props.horizontalPadding}rem` : undefined,
+        "padding-top": props.verticalPadding ? `${props.verticalPadding}rem` : undefined,
+        "padding-bottom": props.verticalPadding ? `${props.verticalPadding}rem` : undefined,
+        "border-radius": props.borderRadius ? `${props.borderRadius}rem` : undefined,
+        
         "background-color": props.backgroundColor,
-        "border-radius": `${props.borderRadius}rem`,
         ...props.attributes
     }
 }
@@ -49,11 +54,11 @@ function VerticalBrick(props:LayoutProps) {
 
 export default function createLayout(defaultLayoutStyles?:LayoutProps) {
     return {
-        HorizontalBrick: (props: Parameters<typeof HorizontalBrick>) => HorizontalBrick({
+        HorizontalBrick: (...props: Parameters<typeof HorizontalBrick>) => HorizontalBrick({
             ...defaultLayoutStyles ?? {}, 
             ...props
         }),
-        VerticalBrick: (props: Parameters<typeof VerticalBrick>) => VerticalBrick({
+        VerticalBrick: (...props: Parameters<typeof VerticalBrick>) => VerticalBrick({
             ...defaultLayoutStyles ?? {}, 
             ...props
         }),

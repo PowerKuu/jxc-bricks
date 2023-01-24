@@ -11,10 +11,13 @@ function createBrickStyles(props, direction) {
     "flex-direction": direction,
     "justify-content": props.justify,
     "align-items": props.align,
-    "gap": `${props.gap}rem`,
-    "padding": `${props.verticalPadding}rem ${props.horizontalPadding}rem`,
+    "gap": props.gap ? `${props.gap}rem` : undefined,
+    "padding-left": props.horizontalPadding ? `${props.horizontalPadding}rem` : undefined,
+    "padding-right": props.horizontalPadding ? `${props.horizontalPadding}rem` : undefined,
+    "padding-top": props.verticalPadding ? `${props.verticalPadding}rem` : undefined,
+    "padding-bottom": props.verticalPadding ? `${props.verticalPadding}rem` : undefined,
+    "border-radius": props.borderRadius ? `${props.borderRadius}rem` : undefined,
     "background-color": props.backgroundColor,
-    "border-radius": `${props.borderRadius}rem`,
     ...props.attributes
   };
 }
@@ -32,11 +35,11 @@ function VerticalBrick(props) {
 }
 function createLayout(defaultLayoutStyles) {
   return {
-    HorizontalBrick: props => HorizontalBrick({
+    HorizontalBrick: (...props) => HorizontalBrick({
       ...(defaultLayoutStyles ?? {}),
       ...props
     }),
-    VerticalBrick: props => VerticalBrick({
+    VerticalBrick: (...props) => VerticalBrick({
       ...(defaultLayoutStyles ?? {}),
       ...props
     })
