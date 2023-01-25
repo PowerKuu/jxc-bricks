@@ -54,11 +54,11 @@ function VerticalBrick(props:LayoutProps) {
 
 export default function createLayout(defaultLayoutStyles?:LayoutProps) {
     return {
-        HorizontalBrick: (...props: Parameters<typeof HorizontalBrick>) => HorizontalBrick({
+        Horizontal: (...props: Parameters<typeof HorizontalBrick>) => HorizontalBrick({
             ...defaultLayoutStyles ?? {}, 
             ...props
         }),
-        VerticalBrick: (...props: Parameters<typeof VerticalBrick>) => VerticalBrick({
+        Vertical: (...props: Parameters<typeof VerticalBrick>) => VerticalBrick({
             ...defaultLayoutStyles ?? {}, 
             ...props
         }),

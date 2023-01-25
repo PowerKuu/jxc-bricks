@@ -35,11 +35,11 @@ function VerticalBrick(props) {
 }
 function createLayout(defaultLayoutStyles) {
   return {
-    HorizontalBrick: (...props) => HorizontalBrick({
+    Horizontal: (...props) => HorizontalBrick({
       ...(defaultLayoutStyles ?? {}),
       ...props
     }),
-    VerticalBrick: (...props) => VerticalBrick({
+    Vertical: (...props) => VerticalBrick({
       ...(defaultLayoutStyles ?? {}),
       ...props
     })
