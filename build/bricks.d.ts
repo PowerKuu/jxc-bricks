@@ -1,6 +1,7 @@
 /// <reference types="@klevn/jxc/src/types/jsx" />
+import "./global.css";
 type LayoutProps = {
-    children?: JSX.Element[];
+    children?: JSX.Children | JSX.Children[];
     justify?: "start" | "end" | "center" | "space-between" | "space-around" | "space-evenly";
     align?: "start" | "end" | "center" | "stretch";
     gap?: number;
@@ -11,7 +12,7 @@ type LayoutProps = {
     attributes?: JSX.Attributes;
 };
 export default function createLayout(defaultLayoutStyles?: LayoutProps): {
-    HorizontalBrick: (props: LayoutProps) => JSX.Element;
-    VerticalBrick: (props: LayoutProps) => JSX.Element;
+    Horizontal: (props: LayoutProps) => any;
+    Vertical: (props: LayoutProps) => any;
 };
 export {};

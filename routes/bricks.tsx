@@ -1,5 +1,7 @@
+import "./global.css"
+
 type LayoutProps = {
-    children?: JSX.Element[], 
+    children?: JSX.Children | JSX.Children[], 
     justify?: "start" | "end" | "center" | "space-between" | "space-around" | "space-evenly",
     align?: "start" | "end" | "center" | "stretch",
     gap?: number,
@@ -53,14 +55,16 @@ function VerticalBrick(props:LayoutProps) {
 }
 
 export default function createLayout(defaultLayoutStyles?:LayoutProps) {
+    function componentWrapper<T extends (...args:any) => any>(component:T, defaultProps: any) {
+        return (props:Parameters<typeof component>[0]) => {
+            return component({
+                ...defaultProps,
+                ...props
+            })
+        }       
+    }
     return {
-        Horizontal: (...props: Parameters<typeof HorizontalBrick>) => HorizontalBrick({
-            ...defaultLayoutStyles ?? {}, 
-            ...props
-        }),
-        Vertical: (...props: Parameters<typeof VerticalBrick>) => VerticalBrick({
-            ...defaultLayoutStyles ?? {}, 
-            ...props
-        }),
+        Horizontal: componentWrapper(HorizontalBrick, defaultLayoutStyles),
+        Vertical: componentWrapper(VerticalBrick, defaultLayoutStyles),
     }
 }
