@@ -14,10 +14,13 @@ type LayoutProps = {
 
     backgroundColor?: string,
     borderRadius?: number,
+    fontSize: number,
+    fontColor: string,
+
+    fixed?: "top" | "bottom" | "left" | "right" | "center",
 
     attributes?: JSX.Attributes,
-
-    fixed?: "top" | "bottom" | "left" | "right" | "center"
+    styles?: JSX.CSSProperties,
 }
 
 
@@ -67,8 +70,11 @@ function createBrickStyles(props:LayoutProps, direction: "row" | "column") {
         "border-radius": props.borderRadius ? `${props.borderRadius}rem` : undefined,
         
         "background-color": props.backgroundColor,
+
+        "font-size": `${props.fontSize}rem`,
+        "color": props.fontColor,
         ...fixedStyles,
-        ...props.attributes
+        ...(props.styles ?? {})
     }
 }
 
@@ -77,6 +83,7 @@ function HorizontalBrick(props:LayoutProps) {
 
     return compiler.factory(props.tag ?? "div", {
         style: styles,
+        ...props.attributes
     }, props.children as JSX.Children)
 }
 
@@ -85,6 +92,7 @@ function VerticalBrick(props:LayoutProps) {
 
     return compiler.factory(props.tag ?? "div", {
         style: styles,
+        ...props.attributes
     }, props.children as JSX.Children)
 }
 

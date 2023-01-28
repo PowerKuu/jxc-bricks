@@ -10,8 +10,11 @@ type LayoutProps = {
     verticalPadding?: number;
     backgroundColor?: string;
     borderRadius?: number;
-    attributes?: JSX.Attributes;
+    fontSize: number;
+    fontColor: string;
     fixed?: "top" | "bottom" | "left" | "right" | "center";
+    attributes?: JSX.Attributes;
+    styles?: JSX.CSSProperties;
 };
 export default function createLayout(defaultLayoutStyles?: LayoutProps): {
     Horizontal: (props: LayoutProps) => any;

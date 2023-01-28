@@ -42,20 +42,24 @@ function createBrickStyles(props, direction) {
     "padding-bottom": props.verticalPadding ? `${props.verticalPadding}rem` : undefined,
     "border-radius": props.borderRadius ? `${props.borderRadius}rem` : undefined,
     "background-color": props.backgroundColor,
+    "font-size": `${props.fontSize}rem`,
+    "color": props.fontColor,
     ...fixedStyles,
-    ...props.attributes
+    ...(props.styles ?? {})
   };
 }
 function HorizontalBrick(props) {
   const styles = createBrickStyles(props, "row");
   return compiler.factory(props.tag ?? "div", {
-    style: styles
+    style: styles,
+    ...props.attributes
   }, props.children);
 }
 function VerticalBrick(props) {
   const styles = createBrickStyles(props, "column");
   return compiler.factory(props.tag ?? "div", {
-    style: styles
+    style: styles,
+    ...props.attributes
   }, props.children);
 }
 export default function createLayout(defaultLayoutStyles) {
