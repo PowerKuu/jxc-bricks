@@ -1,6 +1,8 @@
+import * as compiler from "@klevn/jxc"
 import "./global.css"
 
 type LayoutProps = {
+    tag?: keyof JSX.IntrinsicElements,
     children?: JSX.Children | JSX.Children[], 
     justify?: "start" | "end" | "center" | "space-between" | "space-around" | "space-evenly",
     align?: "start" | "end" | "center" | "stretch",
@@ -37,21 +39,17 @@ function createBrickStyles(props:LayoutProps, direction: "row" | "column") {
 function HorizontalBrick(props:LayoutProps) {
     const styles = createBrickStyles(props, "row")
 
-    return (
-        <div style={styles}>
-            {props.children}
-        </div>
-    )
+    return compiler.factory(props.tag ?? "div", {
+        style: styles,
+    }, props.children as JSX.Children)
 }
 
 function VerticalBrick(props:LayoutProps) {
     const styles = createBrickStyles(props, "column")
 
-    return (
-        <div style={styles}>
-            {props.children}
-        </div>
-    )
+    return compiler.factory(props.tag ?? "div", {
+        style: styles,
+    }, props.children as JSX.Children)
 }
 
 export default function createLayout(defaultLayoutStyles?:LayoutProps) {
