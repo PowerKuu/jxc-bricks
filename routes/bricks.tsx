@@ -14,8 +14,8 @@ type LayoutProps = {
 
     backgroundColor?: string,
     borderRadius?: number,
-    fontSize: number,
-    fontColor: string,
+    fontSize?: number,
+    fontColor?: string,
 
     fixed?: "top" | "bottom" | "left" | "right" | "center",
 
@@ -71,7 +71,7 @@ function createBrickStyles(props:LayoutProps, direction: "row" | "column") {
         
         "background-color": props.backgroundColor,
 
-        "font-size": `${props.fontSize}rem`,
+        "font-size": props.fontSize ? `${props.fontSize}rem` : undefined,
         "color": props.fontColor,
         ...fixedStyles,
         ...(props.styles ?? {})

@@ -10,8 +10,8 @@ type LayoutProps = {
     verticalPadding?: number;
     backgroundColor?: string;
     borderRadius?: number;
-    fontSize: number;
-    fontColor: string;
+    fontSize?: number;
+    fontColor?: string;
     fixed?: "top" | "bottom" | "left" | "right" | "center";
     attributes?: JSX.Attributes;
     styles?: JSX.CSSProperties;

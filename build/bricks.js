@@ -42,7 +42,7 @@ function createBrickStyles(props, direction) {
     "padding-bottom": props.verticalPadding ? `${props.verticalPadding}rem` : undefined,
     "border-radius": props.borderRadius ? `${props.borderRadius}rem` : undefined,
     "background-color": props.backgroundColor,
-    "font-size": `${props.fontSize}rem`,
+    "font-size": props.fontSize ? `${props.fontSize}rem` : undefined,
     "color": props.fontColor,
     ...fixedStyles,
     ...(props.styles ?? {})
