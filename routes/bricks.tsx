@@ -1,4 +1,6 @@
 import * as compiler from "@klevn/jxc"
+
+import styles from "./bricks.module.css"
 import "./global.css"
 
 type LayoutProps = {
@@ -13,11 +15,44 @@ type LayoutProps = {
     backgroundColor?: string,
     borderRadius?: number,
 
-    attributes?: JSX.Attributes
+    attributes?: JSX.Attributes,
+
+    fixed?: "top" | "bottom" | "left" | "right" | "center"
 }
 
 
 function createBrickStyles(props:LayoutProps, direction: "row" | "column") {
+    const fixedStyles = {}
+
+    if (props.fixed) {
+        fixedStyles["width"] = "100%"
+
+        switch (props.fixed) {
+            case "top":
+                fixedStyles["position"] = "fixed"
+                fixedStyles["top"] = "0"
+                break
+            case "bottom":
+                fixedStyles["position"] = "fixed"
+                fixedStyles["bottom"] = "0"
+                break
+            case "left":
+                fixedStyles["position"] = "fixed"
+                fixedStyles["left"] = "0"
+                break
+            case "right":
+                fixedStyles["position"] = "fixed"
+                fixedStyles["right"] = "0"
+                break
+            case "center":
+                fixedStyles["position"] = "fixed"
+                fixedStyles["top"] = "50%"
+                fixedStyles["left"] = "50%"
+                fixedStyles["transform"] = "translate(-50%, -50%)"
+                break
+        }
+    }
+
     return {
         "display": "flex",
         "flex-direction": direction,
@@ -32,6 +67,7 @@ function createBrickStyles(props:LayoutProps, direction: "row" | "column") {
         "border-radius": props.borderRadius ? `${props.borderRadius}rem` : undefined,
         
         "background-color": props.backgroundColor,
+        ...fixedStyles,
         ...props.attributes
     }
 }
