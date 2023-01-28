@@ -7,7 +7,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@klevn/jxc": "^38.0.5"
+    "@klevn/jxc": "latest"
   },
   "type": "module",
   "name": "@klevn/jxc-bricks",
